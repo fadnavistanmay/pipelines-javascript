@@ -30,10 +30,10 @@ steps:
   displayName: 'npm ci'
   condition: ne(variables.CACHE_RESTORED, 'true')
 
-
 - script: |
-    ls -l $(Pipeline.Workspace)
+    ls -l $(Pipeline.Workspace)/s/
 
 - script: npm build
   displayName: 'npm build'
+
 
