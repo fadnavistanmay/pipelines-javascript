@@ -30,6 +30,6 @@ steps:
   displayName: 'npm ci'
   condition: ne(variables.CACHE_RESTORED, 'true')
 
-- script: npm build
+- script: npm run-scripts build
   displayName: 'npm build'
 
