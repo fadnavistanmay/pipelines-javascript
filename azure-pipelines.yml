@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  npm_config_cache: $(Pipeline.Workspace)/.npm
+  npm_config_cache: $(Build.SourcesDirectory)/node_modules
 
 steps:
 - task: NodeTool@0
@@ -18,25 +18,20 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-#- task: CacheBeta@1
-#  inputs:
-#    key: npm4 | $(Agent.OS) | package-lock.json
-#    path: $(npm_config_cache)
-#    cacheHitVar: CACHE_RESTORED
-#  displayName: 'Cache npm'
+- task: CacheBeta@1
+  inputs:
+    key: npm5 | $(Agent.OS) | package-lock.json
+    path: $(npm_config_cache)
+    cacheHitVar: CACHE_RESTORED
+  displayName: 'Cache npm'
 
 - script: |
-    npm ci
-  displayName: 'npm ci'
+    npm install
+  displayName: 'npm install'
   condition: ne(variables.CACHE_RESTORED, 'true')
-
-- script: |
-    ls -l $(Pipeline.Workspace)
 
 - script: npm run-script build
   displayName: 'npm build'
 
-- script: |
-    ls -l $(Pipeline.Workspace)
 
 
