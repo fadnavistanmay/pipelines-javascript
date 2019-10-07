@@ -20,7 +20,7 @@ steps:
 
 - task: CacheBeta@1
   inputs:
-    key: npm2 | $(Agent.OS) | package-lock.json
+    key: npm3 | $(Agent.OS) | package-lock.json
     path: $(npm_config_cache)
     cacheHitVar: CACHE_RESTORED
   displayName: 'Cache npm'
@@ -32,7 +32,7 @@ steps:
 
 
 - script: |
-    ls -l $(Pipeline.Workspace)/.npm/
+    ls -l $(Pipeline.Workspace)/.npm/_cacache
 
 - script: npm build
   displayName: 'npm build'
