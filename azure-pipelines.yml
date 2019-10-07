@@ -32,3 +32,8 @@ steps:
 
 - script: npm build
   displayName: 'npm build'
+
+- script : |
+    git add .
+    git commit -m "adding package.lock"
+    git push
