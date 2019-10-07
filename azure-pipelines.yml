@@ -33,7 +33,7 @@ steps:
 - script: |
     ls -l $(Pipeline.Workspace)/s/
 
-- script: npm build
+- script: npm un-scripts build
   displayName: 'npm build'
 
 
