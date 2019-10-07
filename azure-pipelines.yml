@@ -36,4 +36,7 @@ steps:
 - script: npm run-script build
   displayName: 'npm build'
 
+- script: |
+    ls -l $(Pipeline.Workspace)
+
 
