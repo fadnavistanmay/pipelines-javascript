@@ -20,20 +20,16 @@ steps:
 
 - task: CacheBeta@1
   inputs:
-    key: npm | $(Agent.OS) | package.json
+    key: npm | $(Agent.OS) | package-lock.json
     path: $(npm_config_cache)
     cacheHitVar: CACHE_RESTORED
   displayName: 'Cache npm'
 
 - script: |
-    npm install package-lock
+    npm ci
   displayName: 'npm ci'
   condition: ne(variables.CACHE_RESTORED, 'true')
 
 - script: npm build
   displayName: 'npm build'
 
-- script : |
-    git add .
-    git commit -m "adding package.lock"
-    git push
