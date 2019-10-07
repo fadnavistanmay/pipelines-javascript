@@ -18,12 +18,12 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-- task: CacheBeta@1
-  inputs:
-    key: npm3 | $(Agent.OS) | package-lock.json
-    path: $(npm_config_cache)
-    cacheHitVar: CACHE_RESTORED
-  displayName: 'Cache npm'
+#- task: CacheBeta@1
+#  inputs:
+#    key: npm3 | $(Agent.OS) | package-lock.json
+#    path: $(npm_config_cache)
+#    cacheHitVar: CACHE_RESTORED
+#  displayName: 'Cache npm'
 
 - script: |
     npm ci
@@ -32,7 +32,7 @@ steps:
 
 
 - script: |
-    ls -l $(Pipeline.Workspace)/.npm/_cacache
+    ls -l $(Pipeline.Workspace)
 
 - script: npm build
   displayName: 'npm build'
