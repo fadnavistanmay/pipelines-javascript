@@ -20,7 +20,7 @@ steps:
 
 - task: CacheBeta@1
   inputs:
-    key: yarn3 | $(Agent.OS) | yarn.lock
+    key: yarn33 | $(Agent.OS) | yarn.lock
     path: $(Build.SourcesDirectory)/node_modules
     cacheHitVar: CACHE_RESTORED 
   displayName: 'Cache yarn packages'
