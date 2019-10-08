@@ -25,8 +25,8 @@ steps:
     cacheHitVar: CACHE_RESTORED 
   displayName: 'Cache yarn packages'
 
-#- script: 
-#    chmod -R 777 $(Build.SourcesDirectory)/node_modules
+- script: 
+    chmod -R 777 $(Build.SourcesDirectory)/node_modules
 
 - script: |
     yarn --frozen-lockfile
