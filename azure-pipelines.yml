@@ -9,8 +9,8 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  npm_config_cache: $(Pipeline.Workspace)/.npm
+#variables:
+#  npm_config_cache: $(Pipeline.Workspace)/.npm
 
 steps:
 - task: NodeTool@0
@@ -21,12 +21,12 @@ steps:
 - task: CacheBeta@1
   inputs:
     key: npmci | $(Agent.OS) | package-lock.json
-    path: $(npm_config_cache)
+    path: $(Build.SourcesDirectory)/node_modules
     cacheHitVar: CACHE_RESTORED 
   displayName: 'Cache npm'
 
 - script: |
-    npm ci 
+    npm install --from-lock-file
   displayName: 'npm ci'
   #condition: ne(variables.CACHE_RESTORED, 'true')
 
