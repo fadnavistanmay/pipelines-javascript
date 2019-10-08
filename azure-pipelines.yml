@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  npm_config_cache: $(Pipeline.Workspace)/.npm
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
 steps:
 - task: NodeTool@0
@@ -20,14 +20,15 @@ steps:
 
 - task: CacheBeta@1
   inputs:
-    key: npmci | $(Agent.OS) | package-lock.json
-    path: $(npm_config_change)
+    key: yarn | $(Agent.OS) | yarn.lock
+    path: $(YARN_CACHE_FOLDER)
     cacheHitVar: CACHE_RESTORED 
-  displayName: 'Cache npm'
+  displayName: 'Cache yarn packages'
 
 - script: |
-    npm ci
-  displayName: 'npm ci'
+    yarn --frozen-lockfile
+  displayName: 'Install dependencies'
+  condition: ne(variables.CACHE_RESTORED, 'true')
 
 - script: npm run-script build
   displayName: 'npm build'
