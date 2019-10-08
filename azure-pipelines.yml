@@ -20,7 +20,7 @@ steps:
 
 - task: CacheBeta@1
   inputs:
-    key: npmci | $(Agent.OS) | package-lock.json
+    key: npminstall | $(Agent.OS) | package-lock.json
     path: $(Build.SourcesDirectory)/node_modules
     cacheHitVar: CACHE_RESTORED 
   displayName: 'Cache npm'
