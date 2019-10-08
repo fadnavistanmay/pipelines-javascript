@@ -20,7 +20,7 @@ steps:
 
 - task: CacheBeta@1
   inputs:
-    key: yarn332 | $(Agent.OS) | yarn.lock
+    key: yarn3323 | $(Agent.OS) | yarn.lock
     path: $(YARN_CACHE_FOLDER)
     cacheHitVar: CACHE_RESTORED 
   displayName: 'Cache yarn packages'
@@ -28,7 +28,7 @@ steps:
 - script: |
     yarn --frozen-lockfile
   displayName: 'Install dependencies'
-  condition: ne(variables.CACHE_RESTORED, 'true')
+  #condition: ne(variables.CACHE_RESTORED, 'true')
 
 - script: yarn build
   displayName: 'npm build'
