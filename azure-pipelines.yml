@@ -9,8 +9,8 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+#variables:
+#  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
 steps:
 - task: NodeTool@0
@@ -20,8 +20,8 @@ steps:
 
 - task: CacheBeta@1
   inputs:
-    key: yarn2 | $(Agent.OS) | yarn.lock
-    path: $(YARN_CACHE_FOLDER)
+    key: yarn3 | $(Agent.OS) | yarn.lock
+    path: $(Build.SourcesDirectory)/node_modules
     cacheHitVar: CACHE_RESTORED 
   displayName: 'Cache yarn packages'
 
