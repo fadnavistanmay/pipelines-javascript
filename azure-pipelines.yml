@@ -33,7 +33,7 @@ steps:
   displayName: 'Install dependencies'
   condition: ne(variables.CACHE_RESTORED, 'true')
 
-- script: yarn run build
+- script: sudo yarn build
   displayName: 'npm build'
 
 
