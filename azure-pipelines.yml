@@ -9,8 +9,8 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-#variables:
-#  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+variables:
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
 steps:
 - task: NodeTool@0
@@ -20,20 +20,17 @@ steps:
 
 - task: CacheBeta@1
   inputs:
-    key: yarn33 | $(Agent.OS) | yarn.lock
-    path: $(Build.SourcesDirectory)/node_modules
+    key: yarn332 | $(Agent.OS) | yarn.lock
+    path: $(YARN_CACHE_FOLDER)
     cacheHitVar: CACHE_RESTORED 
   displayName: 'Cache yarn packages'
-
-- script: 
-    chmod -R 777 $(Build.SourcesDirectory)/node_modules
 
 - script: |
     yarn --frozen-lockfile
   displayName: 'Install dependencies'
   condition: ne(variables.CACHE_RESTORED, 'true')
 
-- script: sudo yarn build
+- script: yarn build
   displayName: 'npm build'
 
 
