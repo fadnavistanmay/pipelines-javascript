@@ -1,0 +1,20 @@
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- task: CacheBeta@1
+  inputs:
+    key: yarn3323 | $(Agent.OS) | yarn.lock
+    path: $(YARN_CACHE_FOLDER)
+    cacheHitVar: CACHE_RESTORED 
+  displayName: 'Cache yarn packages'
+
+- script: |
+    yarn --frozen-lockfile
+  displayName: 'Install dependencies'
+  #condition: ne(variables.CACHE_RESTORED, 'true')
+
+- script: yarn build
+  displayName: 'npm build'
