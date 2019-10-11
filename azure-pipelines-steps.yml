@@ -18,4 +18,4 @@ steps:
 - script: npm run-script build
   displayName: 'npm build'
 
-- script: ls -l $(NPM_CONFIG_CHANGE)
+#- script: ls -l $(NPM_CONFIG_CHANGE)
