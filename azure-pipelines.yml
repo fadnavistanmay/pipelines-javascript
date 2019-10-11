@@ -22,7 +22,7 @@ stages:
   - template: azure-pipelines-jobs.yml
 
 variables:
-  npm_config_cache: $(Pipeline.Workspace)/.npm
+  NPM_CONFIG_PREFIX: $(Pipeline.Workspace)/.npm
   CACHE_KEY: npm | $(Agent.OS) | package-lock.json | $(Build.BuildId)
 
 #steps:

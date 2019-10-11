@@ -1,6 +1,4 @@
 steps:
-- script: ls -l $(npm_config_change)
-
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
@@ -9,7 +7,7 @@ steps:
 - task: CacheBeta@1
   inputs:
     key: $(CACHE_KEY)
-    path: $(npm_config_change)
+    path: $(NPM_CONFIG_PREFIX)
     cacheHitVar: CACHE_RESTORED 
   displayName: 'Cache npm'
 
@@ -19,3 +17,5 @@ steps:
 
 - script: npm run-script build
   displayName: 'npm build'
+
+- script: ls -l $(NPM_CONFIG_CHANGE)
