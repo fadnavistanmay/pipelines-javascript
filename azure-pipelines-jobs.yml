@@ -5,9 +5,7 @@ jobs:
       linux 16:    
         VM_IMAGE: ubuntu-16.04
       linux 18:
-        VM_IAMGE: ubuntu-18.04
-      windows 2015:
-        VM_IMAGE: vs2015-win2012r2
+        VM_IMAGE: ubuntu-18.04
       windows 2017:
         VM_IMAGE: vs2017-win2016
       windows 2019:
