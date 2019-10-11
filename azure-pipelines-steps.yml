@@ -7,7 +7,7 @@ steps:
 - task: CacheBeta@1
   inputs:
     key: $(CACHE_KEY)
-    path: $(NPM_CONFIG_PREFIX)
+    path: $(CACHE_PATH)
     cacheHitVar: CACHE_RESTORED 
   displayName: 'Cache npm'
 
