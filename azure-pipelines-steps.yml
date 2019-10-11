@@ -1,4 +1,6 @@
 steps:
+- script: ls -l $(npm_config_change)
+
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
