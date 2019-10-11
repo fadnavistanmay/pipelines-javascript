@@ -13,4 +13,4 @@ jobs:
   pool:
     vmImage: $(VM_IMAGE)
   steps:
-  - template: .azure-pipelines-steps.yml
+  - template: azure-pipelines-steps.yml
