@@ -24,6 +24,7 @@ stages:
 variables:
   CACHE_PATH: $(Build.SourcesDirectory)/node_modules
   CACHE_KEY: npm | $(Agent.OS) | $(Build.BuildId) | package-lock.json
+  CACHE_RESTOREKEYS: npm | $(Agent.OS) | $(Build.BuildId)
 
 #steps:
 #- task: NodeTool@0

@@ -8,6 +8,7 @@ steps:
   inputs:
     key: $(CACHE_KEY)
     path: $(CACHE_PATH)
+    restoreKeys: $(CACHE_RESTOREKEYS)
     cacheHitVar: CACHE_RESTORED 
   displayName: 'Cache npm'
 
