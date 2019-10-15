@@ -23,7 +23,7 @@ stages:
 
 variables:
   CACHE_PATH: $(Build.SourcesDirectory)/node_modules
-  CACHE_KEY: npm | $(Agent.OS) | package-lock.json | $(Build.BuildId)
+  CACHE_KEY: npm | $(Agent.OS) | $(Build.BuildId) | package-lock.json
 
 #steps:
 #- task: NodeTool@0
