@@ -15,16 +15,34 @@ stages:
   jobs:
   - template: azure-pipelines-jobs.yml
 
+- stage: firstruntar
+  displayName: 'Empty Cache Tar'
+  variables:
+    AZP_CACHING_TAR: 'true'
+    CACHE_PACK: tar
+  jobs:
+  - template: azure-pipelines-jobs.yml
+
 - stage: secondrun
   dependsOn: firstrun
   displayName: 'Cached'
   jobs:
   - template: azure-pipelines-jobs.yml
 
+- stage: secondruntar
+  dependsOn: firstruntar
+  displayName: 'Cached tar'
+  variables:
+    AZP_CACHING_TAR: 'true'
+    CACHE_PACK: tar
+  jobs:
+  - template: azure-pipelines-jobs.yml
+
 variables:
   CACHE_PATH: $(Build.SourcesDirectory)/node_modules
-  CACHE_KEY: npm | $(Agent.OS) | $(Build.BuildId) | package-lock.json
+  CACHE_KEY: npm | $(Agent.OS) | $(Build.BuildId) | $(CACHE_PACK) | package-lock.json
   CACHE_RESTOREKEYS: npm | $(Agent.OS) | $(Build.BuildId)
+  system.debug: true
 
 #steps:
 #- task: NodeTool@0
