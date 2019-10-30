@@ -7,7 +7,7 @@ steps:
 - task: CacheBeta@1
   inputs:
     key: $(CACHE_KEY)
-    path: $(YARN_CACHE_FOLDER)
+    path: $(CACHE_FOLDER)
     cacheHitVar: CACHE_RESTORED 
   displayName: 'Cache yarn packages'
 
