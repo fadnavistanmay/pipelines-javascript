@@ -7,31 +7,35 @@
 #- master
 
 stages:
-- stage: firstrun
-  displayName: 'Empty cache'
-  jobs:
-  - template: azure-pipelines-jobs.yml
-
 - stage: firstruntar
-  displayName: 'Empty Cache Tar'
+  displayName: 'Empty cache Tar'
   variables:
-    AZP_CACHING_TAR: 'true'
     CACHE_PACK: tar
   jobs:
   - template: azure-pipelines-jobs.yml
 
-- stage: secondrun
-  dependsOn: firstrun
-  displayName: 'Cached'
+- stage: firstrunfiles
+  displayName: 'Empty Cache Files'
+  variables:
+    AZP_CACHING_CONTENT_FORMAT: FILES
+    CACHE_PACK: files
   jobs:
   - template: azure-pipelines-jobs.yml
 
 - stage: secondruntar
   dependsOn: firstruntar
-  displayName: 'Cached tar'
+  displayName: 'Cached Tar'
   variables:
-    AZP_CACHING_TAR: 'true'
     CACHE_PACK: tar
+  jobs:
+  - template: azure-pipelines-jobs.yml
+
+- stage: secondrunfiles
+  dependsOn: firstrunfiles
+  displayName: 'Cached Files'
+  variables:
+    AZP_CACHING_CONTENT_FORMAT: files
+    CACHE_PACK: files
   jobs:
   - template: azure-pipelines-jobs.yml
 
@@ -40,7 +44,7 @@ stages:
 #  vmImage: 'ubuntu-latest'
 
 variables:
-  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+  CACHE_FOLDER: $(Build.SourcesDirectory)/node_modules
   CACHE_KEY: yarn | $(Agent.OS) | $(Build.BuildId) | $(CACHE_PACK) | yarn.lock
 
 #steps:
