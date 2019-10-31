@@ -36,6 +36,7 @@ stages:
   variables:
     AZP_CACHING_CONTENT_FORMAT: files
     CACHE_PACK: files
+    SECOND_FILES: files
   jobs:
   - template: azure-pipelines-jobs.yml
 
