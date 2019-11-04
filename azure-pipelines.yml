@@ -47,6 +47,7 @@ stages:
 variables:
   CACHE_FOLDER: $(Build.SourcesDirectory)/node_modules
   CACHE_KEY: yarn | $(Agent.OS) | $(Build.BuildId) | $(CACHE_PACK) | yarn.lock
+  system.debug: true
 
 #steps:
 #- task: NodeTool@0
