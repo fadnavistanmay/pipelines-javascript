@@ -16,7 +16,7 @@ steps:
   displayName: 'Install dependencies'
   #condition: ne(variables.CACHE_RESTORED, 'true')
 
-- script: sudo chmod 777 -R $(Build.SourcesDirectory)/node_modules
+- script: sudo chmod -R 777 $(Build.SourcesDirectory)/node_modules
   condition: eq(variables.CACHE_RESTORED, 'true')
 
 - script: yarn build
