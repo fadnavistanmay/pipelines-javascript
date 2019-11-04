@@ -14,7 +14,7 @@ steps:
 - script: |
     yarn --frozen-lockfile
   displayName: 'Install dependencies'
-  condition: eq(variables.CACHE_RESTORED, 'true')
+  condition: ne(variables.CACHE_RESTORED, 'true')
 
 - script: yarn build
   displayName: 'npm build'
