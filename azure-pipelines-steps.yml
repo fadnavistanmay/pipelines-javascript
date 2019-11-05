@@ -7,7 +7,7 @@ steps:
 - task: CacheBeta@1
   inputs:
     key: $(CACHE_KEY)
-    path: $(CACHE_PATH)
+    path: $(npm_config_cache)
     #restoreKeys: $(CACHE_RESTOREKEYS)
     cacheHitVar: CACHE_RESTORED 
   displayName: 'Cache npm'
@@ -15,7 +15,7 @@ steps:
 - task: Cache@2
   inputs:
     key: $(CACHE_KEY) | cachega
-    path: $(CACHE_PATH)
+    path: $(npm_config_cache)
   displayName: 'Cache npm GA'
 
 - script: |
