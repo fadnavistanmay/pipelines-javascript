@@ -12,6 +12,12 @@ steps:
     cacheHitVar: CACHE_RESTORED 
   displayName: 'Cache npm'
 
+- task: Cache@2
+  inputs:
+    key: $(CACHE_KEY) | cachega
+    path: $(CACHE_PATH)
+  displayName: 'Cache npm GA'
+
 - script: |
     npm ci
   displayName: 'npm ci'
