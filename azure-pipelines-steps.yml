@@ -7,17 +7,20 @@ steps:
 - task: CacheBeta@1
   inputs:
     key: $(CACHE_KEY)
-    path: $(CACHE_FOLDER)
+    path: $(YARN_CACHE_FOLDER)
     cacheHitVar: CACHE_RESTORED 
   displayName: 'Cache yarn packages'
+
+- task: Cache@2
+  inputs:
+    key: $(CACHE_KEY) | cachega
+    path: $(YARN_CACHE_FOLDER)
+    cacheHitVar: CACHE_RESTORED 
+  displayName: 'Cache yarn packages GA'
 
 - script: |
     yarn --frozen-lockfile
   displayName: 'Install dependencies'
-  #condition: ne(variables.CACHE_RESTORED, 'true')
-
-- script: chmod -R 777 $(Build.SourcesDirectory)/node_modules
-  condition: eq(variables.CACHE_RESTORED, 'true')
 
 - script: yarn build
   displayName: 'npm build'

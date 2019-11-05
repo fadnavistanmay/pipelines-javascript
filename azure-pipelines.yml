@@ -45,7 +45,7 @@ stages:
 #  vmImage: 'ubuntu-latest'
 
 variables:
-  CACHE_FOLDER: $(Build.SourcesDirectory)/node_modules
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
   CACHE_KEY: yarn | $(Agent.OS) | $(Build.BuildId) | $(CACHE_PACK) | yarn.lock
   system.debug: true
 
